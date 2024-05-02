@@ -1,8 +1,19 @@
+
 #set page(
-  paper: "a6",
-  margin: (x: 1.8cm, y: 1.5cm),
-)
-#let anss=();
+    paper: "a6",
+    margin: (x: 1.8cm, y: 1.5cm),
+  ) 
+#let conf(title:"",affiliation:"",body)={
+  set page(
+    paper:"a4",
+    margin:2.5cm,
+    background: 
+      rotate(24deg,text(18pt, fill: rgb("FFCBC4"))[*#affiliation*])
+    );
+    align(center,text(size: 24pt,weight: "bold")[#title])
+    body
+}
+
 #let answer_table(anss)={
     table(columns: anss.len(),..range(1,anss.len()+1).map(str),..anss)
 }
@@ -47,7 +58,3 @@
     analysis)
 }
 
-#anss.push("A");
-#selection("C++",("good","bad"),anss,"易证",code:"int a")
-#anss.push("B");
-#selection("C++",("worse","better"),anss,"trival")
